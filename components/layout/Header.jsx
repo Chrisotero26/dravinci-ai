@@ -30,8 +30,9 @@ export default function Header({ user, onOpenAuth, onOpenSubscription }) {
             <Image
               src="/images/dravinci-logo.png"
               alt="Dravinci AI"
-              width={160}
-              height={50}
+              width={200}
+              height={80}
+              style={{ objectFit: 'contain' }}
               priority
               onError={(e) => {
                 // Fallback text logo if image not found
@@ -49,10 +50,10 @@ export default function Header({ user, onOpenAuth, onOpenSubscription }) {
 
         <nav className="header-nav desktop-only">
           <Link href="/companions" className={router.pathname.startsWith('/companions') ? 'nav-link active' : 'nav-link'}>
-            Companions
+            Compañeros
           </Link>
-          <Link href="/about" className="nav-link">About</Link>
-          <Link href="/pricing" className="nav-link">Pricing</Link>
+          <Link href="/about" className="nav-link">Sobre Nosotros</Link>
+          <Link href="/pricing" className="nav-link">Precios</Link>
         </nav>
 
         <div className="header-actions">
@@ -159,8 +160,8 @@ export default function Header({ user, onOpenAuth, onOpenSubscription }) {
           display: flex;
           align-items: center;
           position: relative;
-          min-width: 160px;
-          height: 50px;
+          min-width: 200px;
+          height: 80px;
         }
         .logo-text-fallback {
           font-family: 'Playfair Display', Georgia, serif;
