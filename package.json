@@ -1,0 +1,27 @@
+{
+  "name": "dravinci-ai",
+  "version": "1.0.0",
+  "description": "Dravinci AI — AI Companion Platform",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "seed-characters": "node scripts/seedCharacters.js",
+    "generate-sitemap": "node scripts/generateSitemap.js"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "@anthropic-ai/sdk": "^0.24.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "@supabase/auth-helpers-nextjs": "^0.9.0",
+    "stripe": "^14.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.0.0"
+  }
+}
