@@ -2,7 +2,7 @@
 // Main chat API endpoint — handles message sending, AI response, caching
 
 import Anthropic from '@anthropic-ai/sdk';
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { createPagesServerClient } from '@supabase/auth-helpers-nextjs';
 import {
   checkMessageLimit,
   incrementMessageCount,
@@ -23,8 +23,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Auth check
-    const supabase = createServerSupabaseClient({ req, res });
+    // Auth check - Using the modern createPagesServerClient as suggested by Claude
+    const supabase = createPagesServerClient({ req, res });
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     
     if (authError || !user) {
@@ -90,8 +90,9 @@ export default async function handler(req, res) {
       const systemPrompt = buildSystemPrompt(character);
       const conversationMessages = buildConversationMessages(history, message);
 
+      // Using the model specified in environment variables or a fallback
       const response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-20250514',
+        model: process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20240620',
         max_tokens: 500,
         system: systemPrompt,
         messages: conversationMessages
